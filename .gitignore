@@ -1,0 +1,16 @@
+*.jl.cov
+*.jl.mem
+*.DS_Store
+*.ipynb_checkpoints
+*.toml
+*.csv
+*.pdf
+*.png
+*.jld2
+*.mat
+__site__
+Manifest.toml
+docs/build/
+docs/site/
+.vscode/
+.idea/

@@ -1,0 +1,15 @@
+name: CI
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: julia-actions/setup-julia@v1
+        with:
+          version: '1.8'
+      - name: Install dependencies
+        run: julia --project=@. -e "using Pkg; Pkg.instantiate()"
+      - name: Run tests
+        run: julia --project=@. -e "using Pkg; Pkg.test()"
