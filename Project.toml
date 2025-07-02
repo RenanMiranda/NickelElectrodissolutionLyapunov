@@ -1,0 +1,15 @@
+name = "NickelElectrodissolutionLyapunov"
+uuid = "a4e8e2b8-7f1d-4f3a-9c6d-0b8c9d1e2f3c"
+authors = ["Renan Carneiro Cavalcante de Miranda <renanchimie@gmail.com>"]
+version = "0.1.0"
+
+[deps]
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+OrdinaryDiffEq = "1dea7af3-3e70-54e6-95c3-0bf5283fa5ed"
+Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
+DynamicalSystems = "61744808-ddfa-5f27-97ff-6e42cc95d634"
+Distributed = "8ba89e20-285c-5b6f-9357-94700520ee1b"
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+
+[compat]
+julia = "1.10.9"
