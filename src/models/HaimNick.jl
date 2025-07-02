@@ -1,9 +1,7 @@
-module HaimNick
+# Funções do modelo HaimNick
 
-export HaimNick!, HaimNickCoupled!
-
-"""
-    HaimNick!(du, u, par, e_acop)
+"""    
+HaimNick!(du, u, par, e_acop)
 
 Modelo dinâmico para eletrodissolução de níquel com três variáveis de estado:
 - e: Potencial elétrico da dupla camada
@@ -45,8 +43,8 @@ function HaimNick!(du, u, par, e_acop)
     return nothing
 end
 
-"""
-    HaimNickCoupled!(du, u, p, t)
+"""    
+HaimNickCoupled!(du, u, p, t)
 
 Modelo para dois osciladores acoplados com acoplamento mútuo.
 """
@@ -66,6 +64,4 @@ function HaimNickCoupled!(du, u, p, t)
     HaimNick!(du2, u2, par2, e1)
     
     return nothing
-end
-
 end

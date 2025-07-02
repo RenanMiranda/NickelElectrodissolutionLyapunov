@@ -1,11 +1,21 @@
-module LyapunovExponents
+# Funções para cálculo dos expoentes de Lyapunov
 
-using LinearAlgebra
+"""    
+calculate_lyapunov(f, jac, u0, p, h, nsteps; nlyap=3)
 
-"""
-    calculate_lyapunov(f, jac, u0, p, h, nsteps; nlyap=3)
+Calcula os expoentes de Lyapunov usando o método RK4 otimizado e ortogonalização de Gram-Schmidt.
 
-Calcula expoentes de Lyapunov com otimizações de desempenho.
+Argumentos:
+- f: Função do sistema dinâmico
+- jac: Função do jacobiano do sistema
+- u0: Condição inicial
+- p: Parâmetros do sistema
+- h: Passo de tempo
+- nsteps: Número de passos de integração
+- nlyap: Número de expoentes a calcular (opcional)
+
+Retorna:
+- Array com os expoentes de Lyapunov
 """
 function calculate_lyapunov(f, jac, u0, p, h, nsteps; nlyap=3)
     n = length(u0)
@@ -59,7 +69,11 @@ function calculate_lyapunov(f, jac, u0, p, h, nsteps; nlyap=3)
     return λ
 end
 
-# Implementação otimizada de RK4 in-place
+"""    
+rk4_step!(f, du, u, p, t, h, k1, k2, k3, k4, utemp)
+
+Realiza um passo do método RK4 in-place com pré-alocação.
+"""
 function rk4_step!(f, du, u, p, t, h, k1, k2, k3, k4, utemp)
     # Estágio 1
     f(du, u, p, t)
@@ -82,6 +96,4 @@ function rk4_step!(f, du, u, p, t, h, k1, k2, k3, k4, utemp)
     
     # Combinação
     @. u += (h/6) * (k1 + 2*k2 + 2*k3 + k4)
-end
-
 end
