@@ -28,10 +28,11 @@ module Utils
 end
 
 module Numerics
-    using DifferentialEquations
+    include(joinpath(@__DIR__, "numerics", "Simulation.jl"))
+    using .Simulation
     export simulate_coupled_system
-    include(joinpath(@__DIR__, "numerics", "CoupledSystems.jl"))
 end
+
 
 # Exportar módulos principais
 export Models, Analysis, Utils, Numerics
