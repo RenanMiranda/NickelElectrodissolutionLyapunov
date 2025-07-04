@@ -1,8 +1,8 @@
 # Figura 6.3 da Tese: Análise de sincronização com variação de σ
 # Reproduz séries temporais e espaços de fase para diferentes forças de acoplamento
 
-include("../../src/NickelElectrodissolutionLyapunov.jl")
-using .Models, .Numerics, .Analysis, .Utils
+using NickelElectrodissolutionLyapunov
+using NickelElectrodissolutionLyapunov: Models, Numerics, Analysis, Utils
 using Plots
 
 # ===== Configuração da Simulação =====
@@ -26,6 +26,7 @@ for (i, σ) in enumerate(σ_values)
     par2[7] = σ
     
     # Simular sistema acoplado
+    
     sol = simulate_coupled_system(par1, par2, tspan, h)
     
     # Extrair dados após período transiente
@@ -35,7 +36,7 @@ for (i, σ) in enumerate(σ_values)
     
     # Calcular métricas de sincronização
     error = synchronization_error(sol[1:3, idxs], sol[4:6, idxs], h)
-    ΔΦ, ΔΩ = phase_difference(sol[2, idxs], e1, sol[5, idxs], e2)
+    ΔΦ, ΔΩ = phase_difference(sol[2, idxs], e1, sol[5, idxs], e2, h)
     
     # Armazenar resultados
     push!(results, (σ=σ, e1=e1, e2=e2, error=error, ΔΩ=ΔΩ))
@@ -56,5 +57,9 @@ end
 
 # ===== Análise Crítica =====
 # Determinar σ crítico para sincronização completa
-critical_σ = findfirst(r -> r.error < 0.01, results)
-println("σ crítico para sincronização: $(results[critical_σ].σ)")
+critical_idx = findfirst(r -> r.error < 0.01, results)
+if !isnothing(critical_idx)
+    println("σ crítico para sincronização: $(results[critical_idx].σ)")
+else
+    println("Não foi encontrado σ crítico para sincronização (erro < 0.01)")
+end
