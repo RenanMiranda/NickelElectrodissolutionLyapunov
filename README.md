@@ -40,14 +40,6 @@ O pacote NickelElectrodissolutionLyapunov oferece ferramentas completas para an�
 - Validação experimental contra dados da literatura
 - Protocolos completos para estudos de sensibilidade paramétrica
 
-Para começar rapidamente:
-```julia
-using NickelElectrodissolutionLyapunov
-run_example(:figure6_3)  # Reproduz a Figura 6.3 da tese
-run_example(:phase_sync) # Análise de sincronização de fase
-## Documentação
-[Documentação Completa](https://renanmiranda.github.io/NickelElectrodissolutionLyapunov)
-
 ## Reprodução dos Resultados da Tese
 ```bash
 julia --project=@. examples/Chapter6/Figure6_2.jl  # Diagrama de Lyapunov
